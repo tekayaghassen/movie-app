@@ -3,6 +3,8 @@ import { moviesData } from "./data";
 import Search from "./components/Search";
 import MovieList from "./components/MovieList";
 import AddMovie from "./components/AddMovie";
+import Description from "./components/Description";
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import "./App.css";
 
 function App() {
@@ -30,14 +32,19 @@ function App() {
 
   return (
     <div>
-      <Search
-        search={search}
-        rate={rate}
-        handleRating={handleRating}
-        handleSearch={handleSearch}
-      />
-      <MovieList movies={filterMovie()} />
-      <AddMovie addMovie={addMovie} />
+      <Router>
+        <Search
+          search={search}
+          rate={rate}
+          handleRating={handleRating}
+          handleSearch={handleSearch}
+        />
+        <AddMovie addMovie={addMovie} /> 
+        <Switch>
+          <Route path="/" exact component={() => <MovieList movies={filterMovie()} />} />
+          <Route path="/trailer/:id" component={Description} />
+        </Switch>
+      </Router>
     </div>
   );
 }

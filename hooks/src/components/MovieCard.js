@@ -1,5 +1,6 @@
 import React from "react";
 import StarRating from "./StarRating";
+import { Link } from 'react-router-dom'
 
 const MovieCard = ({ film }) => {
   return (
@@ -17,7 +18,7 @@ const MovieCard = ({ film }) => {
       </div>
       <img src={film.image} alt={film.name} />
 
-      <h3> {film.name} </h3>
+      <Link to={`/trailer/${film.id}`}><h3> {film.name} </h3></Link>
       <p> {film.date} </p>
     </div>
   );
